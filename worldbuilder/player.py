@@ -1,3 +1,4 @@
 
 class Player:
-    pass
+    def __init__(self):
+        self.current_room = 0
