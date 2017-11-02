@@ -9,6 +9,9 @@ class Room:
             self.id = _id
 
         self._name = ""
+        self._short_desc = ""
+        self._desc = ""
+        self._exits = {}
 
     @property
     def name(self):
@@ -17,3 +20,25 @@ class Room:
     @name.setter
     def name(self, value):
         self._name = value
+
+    @property
+    def short_desc(self):
+        return self._short_desc
+
+    @short_desc.setter
+    def short_desc(self, value):
+        self._short_desc = value
+
+    @property
+    def desc(self):
+        return self._desc
+
+    @desc.setter
+    def desc(self, value):
+        self._desc = value
+
+    def add_exit(self, exit_name, room_id):
+        self._exits[exit_name] = room_id
+
+    def get_exits(self):
+        return self._exits
