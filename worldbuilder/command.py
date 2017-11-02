@@ -63,29 +63,47 @@ def parse(command, player=None, batch=False):
             print("\n{}".format("\n".join(textwrap.wrap(_room.desc, 80))))
 
         if len(_room.get_exits()) > 0:
-            print()
+            print("\nThere are exits:", end="")
             for direction, room_id in _room.get_exits().items():
-                print("{} - {}\n".format(direction, world.current_world.get_room(room_id).name))
-
+                print("\n{} - {}".format(direction, world.current_world.get_room(room_id).name))
+                
     # Exits
-    if words[0] in ("north", "n"):
-        pass
-    if words[0] in ("south", "s"):
-        pass
-    if words[0] in ("east", "e"):
-        pass
-    if words[0] in ("west", "w"):
-        pass
-    if words[0] in ("northeast", "ne"):
-        pass
-    if words[0] in ("northwest", "nw"):
-        pass
-    if words[0] in ("southeast", "se"):
-        pass
-    if words[0] in ("southwest", "sw"):
-        pass
-    if words[0] in ("up", "u"):
-        pass
-    if words[0] in ("down", "d"):
-        pass
-    # TODO special exits
+
+    if player is not None:
+        exits = world.current_world.get_room(player.current_room).get_exits()
+
+        try:
+            if words[0] in ("north", "n"):
+                player.current_room = exits['n']
+                parse("look", player)
+            if words[0] in ("south", "s"):
+                player.current_room = exits['s']
+                parse("look", player)
+            if words[0] in ("east", "e"):
+                player.current_room = exits['e']
+                parse("look", player)
+            if words[0] in ("west", "w"):
+                player.current_room = exits['w']
+                parse("look", player)
+            if words[0] in ("northeast", "ne"):
+                player.current_room = exits['ne']
+                parse("look", player)
+            if words[0] in ("northwest", "nw"):
+                player.current_room = exits['nw']
+                parse("look", player)
+            if words[0] in ("southeast", "se"):
+                player.current_room = exits['se']
+                parse("look", player)
+            if words[0] in ("southwest", "sw"):
+                player.current_room = exits['sw']
+                parse("look", player)
+            if words[0] in ("up", "u"):
+                player.current_room = exits['u']
+                parse("look", player)
+            if words[0] in ("down", "d"):
+                player.current_room = exits['d']
+                parse("look", player)
+        except KeyError:
+            print("Exit not found")
+
+        # TODO special exits
