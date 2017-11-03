@@ -49,9 +49,16 @@ def parse(command, player=None, batch=False):
             for _, _room in world.current_world.rooms.items():
                 print("{}: {} - {}".format(_room.id, _room.name, _room.short_desc))
 
-    # usage: @save filename (save as JSON file?)
-    if words[0] == "@save":
-        pass
+    # usage: @save filename
+    if words[0] == "@save" and len(words) == 2:
+        with open(words[1], 'w') as f:
+            f.write(world.current_world.to_json_str())
+            print("World saved to {}".format(words[1]))
+
+    # usage: @load filename
+    if words[0] == "@load" and len(words) == 2:
+        with open(words[1]) as f:
+            world.current_world = world.World.from_json_str(f.read())
 
     # Player commands
 
@@ -66,7 +73,7 @@ def parse(command, player=None, batch=False):
             print("\nThere are exits:", end="")
             for direction, room_id in _room.get_exits().items():
                 print("\n{} - {}".format(direction, world.current_world.get_room(room_id).name))
-                
+
     # Exits
 
     if player is not None:

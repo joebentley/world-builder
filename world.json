@@ -1,0 +1,23 @@
+{
+    "max_id": 2,
+    "rooms": {
+        "1": {
+            "_desc": "This room consists of rough stone walls surrounding a smooth stone floor. The floor is covered in a thin layer of hay, which gets progressively more blood-soaked as it progresses toward the northern iron door. A rusty bucket is on the floor.",
+            "_exits": {
+                "n": 2
+            },
+            "_name": "Cell",
+            "_short_desc": "\"This is a horrible place\"",
+            "id": 1
+        },
+        "2": {
+            "_desc": "A long, straight corridor lit by torches connects various cells identical to yours. There are no sounds other than wind coming down the stairwell to the east. ",
+            "_exits": {
+                "s": 1
+            },
+            "_name": "Corridor",
+            "_short_desc": "Dungeon corridor",
+            "id": 2
+        }
+    }
+}
