@@ -12,7 +12,7 @@ class RoomEncoder(json.JSONEncoder):
 class World:
     def __init__(self):
         self.rooms = {}
-        self.max_id = 0
+        self.max_object_id = 0
 
     def add_room(self, room: Room):
         self.rooms[room.id] = room
@@ -25,6 +25,9 @@ class World:
 
     def get_next_id(self):
         return self.max_id + 1
+
+    def get_next_object_id(self):
+        return self.max_object_id + 1
 
     def to_json_serializable(self):
         # construct JSON serializable object manually

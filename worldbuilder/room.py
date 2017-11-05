@@ -11,7 +11,8 @@ class Room:
         self._name = ""
         self._short_desc = ""
         self._desc = ""
-        self._exits = {}
+        self.exits = {}
+        self.objects = {}
 
     @property
     def name(self):
@@ -38,7 +39,13 @@ class Room:
         self._desc = value
 
     def add_exit(self, exit_name, room_id):
-        self._exits[exit_name] = room_id
+        self.exits[exit_name] = room_id
 
     def get_exits(self):
-        return self._exits
+        return self.exits
+
+    def add_object(self, object):
+        self.objects[object.id] = object
+
+    def get_objects(self):
+        return self.objects
